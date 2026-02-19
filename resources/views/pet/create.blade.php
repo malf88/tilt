@@ -2,16 +2,16 @@
 
 @section('content')
 <div class="max-w-md mx-auto">
-    <div class="bg-white rounded-lg shadow-xl p-8">
-        <div class="text-center mb-6">
+    <div class="bg-white rounded-3xl shadow-lg p-8">
+        <div class="text-center mb-8">
             <div class="text-6xl mb-4">🐾</div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Crie Seu Pet!</h2>
-            <p class="text-gray-600">Escolha um nome único para seu companheiro virtual</p>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Crie Seu Pet</h2>
+            <p class="text-gray-600">Escolha um nome único para seu companheiro</p>
         </div>
 
         @if($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                <ul class="list-disc list-inside">
+            <div class="bg-red-100 border-l-4 border-red-400 text-red-700 px-4 py-3 rounded-2xl mb-6">
+                <ul class="text-sm space-y-1">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -31,7 +31,7 @@
                     id="name" 
                     name="name" 
                     value="{{ old('name') }}"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-300 focus:border-blue-300 transition-all"
                     placeholder="Ex: Fluffy, Shadow, Luna..."
                     required
                     minlength="2"
@@ -39,54 +39,35 @@
                     autofocus
                 >
                 <p class="mt-2 text-sm text-gray-500">
-                    O nome deve ter entre 2 e 50 caracteres
+                    Entre 2 e 50 caracteres
                 </p>
             </div>
 
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                <h3 class="font-semibold text-blue-900 mb-2">Atributos Iniciais:</h3>
-                <ul class="text-sm text-blue-800 space-y-1">
-                    <li>❤️ Saúde: 100</li>
-                    <li>🍖 Fome: 0</li>
-                    <li>💪 Nível de Treinamento: 0</li>
-                </ul>
+            <div class="bg-purple-50 rounded-2xl p-5">
+                <h3 class="font-semibold text-gray-800 mb-3">Atributos Iniciais</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between items-center bg-white rounded-xl px-3 py-2">
+                        <span class="text-gray-700">❤️ Saúde</span>
+                        <span class="font-bold text-red-500">100</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white rounded-xl px-3 py-2">
+                        <span class="text-gray-700">🍖 Fome</span>
+                        <span class="font-bold text-orange-500">0</span>
+                    </div>
+                    <div class="flex justify-between items-center bg-white rounded-xl px-3 py-2">
+                        <span class="text-gray-700">💪 Treinamento</span>
+                        <span class="font-bold text-purple-500">0</span>
+                    </div>
+                </div>
             </div>
 
             <button 
                 type="submit" 
-                class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-200"
+                class="w-full bg-gradient-to-r from-blue-400 to-purple-400 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-4 px-4 rounded-2xl transition-all shadow-lg hover:shadow-xl"
             >
-                🎉 Criar Pet
+                Criar Pet
             </button>
         </form>
     </div>
-
-    <div class="mt-6 text-center">
-        <p class="text-sm text-gray-600">
-            Dica: Escolha um nome que você goste, pois não poderá mudá-lo depois!
-        </p>
-    </div>
 </div>
-
-<script>
-    // Client-side validation
-    document.querySelector('form').addEventListener('submit', function(e) {
-        const nameInput = document.getElementById('name');
-        const name = nameInput.value.trim();
-        
-        if (name.length < 2) {
-            e.preventDefault();
-            alert('O nome deve ter pelo menos 2 caracteres!');
-            nameInput.focus();
-            return false;
-        }
-        
-        if (name.length > 50) {
-            e.preventDefault();
-            alert('O nome deve ter no máximo 50 caracteres!');
-            nameInput.focus();
-            return false;
-        }
-    });
-</script>
 @endsection

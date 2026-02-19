@@ -1,59 +1,63 @@
-<div class="battle-arena p-6 max-w-4xl mx-auto">
-    <h2 class="text-3xl font-bold text-center mb-6">⚔️ Arena de Batalha</h2>
+<div class="max-w-4xl mx-auto">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-2">Arena de Batalha</h2>
+        <p class="text-gray-600">Teste a força do seu pet</p>
+    </div>
 
     @if(!$currentBattle)
         {{-- Difficulty Selection --}}
         <div class="mb-8">
-            <h3 class="text-xl font-semibold mb-4 text-center">Escolha a Dificuldade</h3>
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">Escolha a Dificuldade</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {{-- Easy --}}
                 <button wire:click="selectDifficulty('easy')" 
-                        class="p-6 rounded-lg border-2 transition-all duration-200 {{ $difficulty === 'easy' ? 'border-green-500 bg-green-50' : 'border-gray-300 hover:border-green-300' }}">
-                    <div class="text-4xl mb-2">🟢</div>
-                    <h4 class="font-bold text-lg mb-2">Fácil</h4>
+                        class="p-6 rounded-3xl transition-all {{ $difficulty === 'easy' ? 'bg-green-100 ring-4 ring-green-300' : 'bg-white hover:bg-green-50' }} shadow-lg">
+                    <div class="text-5xl mb-3">🟢</div>
+                    <h4 class="font-bold text-lg mb-1 text-gray-800">Fácil</h4>
                     <p class="text-sm text-gray-600">Força: 20-40</p>
-                    <p class="text-xs text-gray-500 mt-2">Ideal para iniciantes</p>
                 </button>
 
                 {{-- Medium --}}
                 <button wire:click="selectDifficulty('medium')" 
-                        class="p-6 rounded-lg border-2 transition-all duration-200 {{ $difficulty === 'medium' ? 'border-yellow-500 bg-yellow-50' : 'border-gray-300 hover:border-yellow-300' }}">
-                    <div class="text-4xl mb-2">🟡</div>
-                    <h4 class="font-bold text-lg mb-2">Médio</h4>
+                        class="p-6 rounded-3xl transition-all {{ $difficulty === 'medium' ? 'bg-yellow-100 ring-4 ring-yellow-300' : 'bg-white hover:bg-yellow-50' }} shadow-lg">
+                    <div class="text-5xl mb-3">🟡</div>
+                    <h4 class="font-bold text-lg mb-1 text-gray-800">Médio</h4>
                     <p class="text-sm text-gray-600">Força: 40-70</p>
-                    <p class="text-xs text-gray-500 mt-2">Desafio equilibrado</p>
                 </button>
 
                 {{-- Hard --}}
                 <button wire:click="selectDifficulty('hard')" 
-                        class="p-6 rounded-lg border-2 transition-all duration-200 {{ $difficulty === 'hard' ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-300' }}">
-                    <div class="text-4xl mb-2">🔴</div>
-                    <h4 class="font-bold text-lg mb-2">Difícil</h4>
+                        class="p-6 rounded-3xl transition-all {{ $difficulty === 'hard' ? 'bg-red-100 ring-4 ring-red-300' : 'bg-white hover:bg-red-50' }} shadow-lg">
+                    <div class="text-5xl mb-3">🔴</div>
+                    <h4 class="font-bold text-lg mb-1 text-gray-800">Difícil</h4>
                     <p class="text-sm text-gray-600">Força: 70-95</p>
-                    <p class="text-xs text-gray-500 mt-2">Para mestres</p>
                 </button>
             </div>
         </div>
 
         {{-- Pet Stats --}}
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h3 class="text-lg font-semibold mb-4">Seu Pet: {{ $pet->name }}</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <p class="text-sm text-gray-600">Saúde</p>
-                    <p class="text-2xl font-bold">{{ $pet->health }}</p>
+        <div class="bg-white rounded-3xl shadow-lg p-6 mb-6">
+            <h3 class="text-lg font-semibold mb-4 text-gray-800">Seu Pet: {{ $pet->name }}</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center bg-red-50 rounded-2xl p-4">
+                    <div class="text-3xl mb-1">❤️</div>
+                    <p class="text-xs text-gray-600">Saúde</p>
+                    <p class="text-xl font-bold text-red-500">{{ $pet->health }}</p>
                 </div>
-                <div>
-                    <p class="text-sm text-gray-600">Treinamento</p>
-                    <p class="text-2xl font-bold">{{ $pet->training_level }}</p>
+                <div class="text-center bg-purple-50 rounded-2xl p-4">
+                    <div class="text-3xl mb-1">💪</div>
+                    <p class="text-xs text-gray-600">Treinamento</p>
+                    <p class="text-xl font-bold text-purple-500">{{ $pet->training_level }}</p>
                 </div>
-                <div>
-                    <p class="text-sm text-gray-600">Fome</p>
-                    <p class="text-2xl font-bold">{{ $pet->hunger }}</p>
+                <div class="text-center bg-orange-50 rounded-2xl p-4">
+                    <div class="text-3xl mb-1">🍖</div>
+                    <p class="text-xs text-gray-600">Fome</p>
+                    <p class="text-xl font-bold text-orange-500">{{ $pet->hunger }}</p>
                 </div>
-                <div>
-                    <p class="text-sm text-gray-600">Força de Batalha</p>
-                    <p class="text-2xl font-bold text-indigo-600">{{ number_format($pet->battle_strength, 1) }}</p>
+                <div class="text-center bg-blue-50 rounded-2xl p-4">
+                    <div class="text-3xl mb-1">⚡</div>
+                    <p class="text-xs text-gray-600">Força</p>
+                    <p class="text-xl font-bold text-blue-600">{{ number_format($pet->battle_strength, 1) }}</p>
                 </div>
             </div>
         </div>
@@ -61,27 +65,27 @@
         {{-- Start Battle Button --}}
         <div class="text-center">
             <button wire:click="startBattle" 
-                    class="bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-lg text-xl transition-colors duration-200">
-                ⚔️ Iniciar Batalha!
+                    class="bg-gradient-to-r from-red-400 to-rose-400 hover:from-red-500 hover:to-rose-500 text-white font-bold py-4 px-10 rounded-full text-lg transition-all shadow-lg hover:shadow-xl">
+                ⚔️ Iniciar Batalha
             </button>
         </div>
     @else
         {{-- Battle Result --}}
-        <div class="bg-white rounded-lg shadow-lg p-8">
+        <div class="bg-white rounded-3xl shadow-lg p-8">
             {{-- Battle Animation --}}
             @if($showBattleAnimation)
-                <div class="text-center mb-6">
-                    <div class="text-6xl animate-pulse">⚔️</div>
-                    <p class="text-xl font-semibold mt-4">Batalha em andamento...</p>
+                <div class="text-center mb-8 py-8">
+                    <div class="text-6xl animate-pulse mb-4">⚔️</div>
+                    <p class="text-xl font-semibold text-gray-700">Batalha em andamento...</p>
                 </div>
             @endif
 
             {{-- Combatants --}}
-            <div class="grid grid-cols-2 gap-8 mb-8">
+            <div class="grid grid-cols-3 gap-4 mb-8">
                 {{-- Your Pet --}}
-                <div class="text-center">
-                    <div class="text-5xl mb-2">🐾</div>
-                    <h4 class="font-bold text-lg">{{ $pet->name }}</h4>
+                <div class="text-center bg-blue-50 rounded-3xl p-6">
+                    <div class="text-6xl mb-3">🐾</div>
+                    <h4 class="font-bold text-lg mb-1 text-gray-800">{{ $pet->name }}</h4>
                     <p class="text-sm text-gray-600">Força: {{ number_format($currentBattle->pet_strength, 1) }}</p>
                 </div>
 
@@ -91,9 +95,9 @@
                 </div>
 
                 {{-- Opponent --}}
-                <div class="text-center">
-                    <div class="text-5xl mb-2">👾</div>
-                    <h4 class="font-bold text-lg">{{ $opponent['name'] }}</h4>
+                <div class="text-center bg-red-50 rounded-3xl p-6">
+                    <div class="text-6xl mb-3">👾</div>
+                    <h4 class="font-bold text-lg mb-1 text-gray-800">{{ $opponent['name'] }}</h4>
                     <p class="text-sm text-gray-600">Força: {{ number_format($opponent['strength'], 1) }}</p>
                 </div>
             </div>
@@ -101,50 +105,61 @@
             {{-- Result --}}
             <div class="text-center mb-6">
                 @if($currentBattle->result === 'win')
-                    <div class="bg-green-100 border-2 border-green-500 rounded-lg p-6">
-                        <div class="text-6xl mb-2">🏆</div>
-                        <h3 class="text-2xl font-bold text-green-700 mb-2">Vitória!</h3>
-                        <p class="text-gray-700">Seu pet venceu a batalha!</p>
-                        <p class="text-sm text-gray-600 mt-2">+5 Nível de Treinamento</p>
+                    <div class="bg-green-100 rounded-3xl p-8">
+                        <div class="text-7xl mb-3">🏆</div>
+                        <h3 class="text-3xl font-bold text-green-700 mb-2">Vitória!</h3>
+                        <p class="text-gray-700 mb-3">Seu pet venceu a batalha!</p>
+                        <p class="text-sm text-green-600 font-semibold">+5 Nível de Treinamento</p>
                     </div>
                 @elseif($currentBattle->result === 'loss')
-                    <div class="bg-red-100 border-2 border-red-500 rounded-lg p-6">
-                        <div class="text-6xl mb-2">😢</div>
-                        <h3 class="text-2xl font-bold text-red-700 mb-2">Derrota</h3>
-                        <p class="text-gray-700">Seu pet foi derrotado.</p>
-                        <p class="text-sm text-gray-600 mt-2">Continue treinando!</p>
+                    <div class="bg-red-100 rounded-3xl p-8">
+                        <div class="text-7xl mb-3">😢</div>
+                        <h3 class="text-3xl font-bold text-red-700 mb-2">Derrota</h3>
+                        <p class="text-gray-700 mb-3">Seu pet foi derrotado</p>
+                        <p class="text-sm text-red-600">Continue treinando!</p>
                     </div>
                 @else
-                    <div class="bg-gray-100 border-2 border-gray-500 rounded-lg p-6">
-                        <div class="text-6xl mb-2">🤝</div>
-                        <h3 class="text-2xl font-bold text-gray-700 mb-2">Empate!</h3>
-                        <p class="text-gray-700">A batalha terminou empatada.</p>
-                        <p class="text-sm text-gray-600 mt-2">Forças iguais!</p>
+                    <div class="bg-gray-100 rounded-3xl p-8">
+                        <div class="text-7xl mb-3">🤝</div>
+                        <h3 class="text-3xl font-bold text-gray-700 mb-2">Empate!</h3>
+                        <p class="text-gray-700">Forças iguais</p>
                     </div>
                 @endif
             </div>
 
             {{-- Battle Effects --}}
-            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
-                <p class="text-sm font-semibold mb-2">Efeitos da Batalha:</p>
-                <ul class="text-sm text-gray-700 space-y-1">
-                    <li>• Fome aumentou em 10 pontos</li>
-                    <li>• Saúde reduziu em 10 pontos</li>
+            <div class="bg-purple-50 rounded-2xl p-5 mb-6">
+                <p class="text-sm font-semibold mb-3 text-gray-800">Efeitos da Batalha:</p>
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-white rounded-xl p-3 text-center">
+                        <div class="text-2xl mb-1">🍖</div>
+                        <div class="text-xs text-gray-600">Fome</div>
+                        <div class="text-sm font-bold text-orange-500">+10</div>
+                    </div>
+                    <div class="bg-white rounded-xl p-3 text-center">
+                        <div class="text-2xl mb-1">❤️</div>
+                        <div class="text-xs text-gray-600">Saúde</div>
+                        <div class="text-sm font-bold text-red-500">-10</div>
+                    </div>
                     @if($currentBattle->result === 'win')
-                        <li class="text-green-600 font-semibold">• Nível de Treinamento aumentou em 5 pontos!</li>
+                        <div class="bg-white rounded-xl p-3 text-center">
+                            <div class="text-2xl mb-1">💪</div>
+                            <div class="text-xs text-gray-600">Treino</div>
+                            <div class="text-sm font-bold text-green-500">+5</div>
+                        </div>
                     @endif
-                </ul>
+                </div>
             </div>
 
             {{-- Action Buttons --}}
             <div class="grid grid-cols-2 gap-4">
                 <button wire:click="resetBattle" 
-                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                        class="bg-gradient-to-r from-blue-400 to-indigo-400 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold py-3 px-6 rounded-full transition-all shadow-lg">
                     🔄 Nova Batalha
                 </button>
                 <a href="/pet/dashboard" 
-                   class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg text-center transition-colors duration-200">
-                    🏠 Voltar ao Dashboard
+                   class="bg-gradient-to-r from-gray-400 to-gray-500 hover:from-gray-500 hover:to-gray-600 text-white font-semibold py-3 px-6 rounded-full text-center transition-all shadow-lg">
+                    🏠 Dashboard
                 </a>
             </div>
         </div>
