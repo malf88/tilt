@@ -40,7 +40,8 @@ class PetController extends Controller
     public function store(CreatePetRequest $request): RedirectResponse
     {
         // Create the pet using validated data
-        $pet = $this->petService->createPet($request->validated('name'));
+        $validated = $request->validated();
+        $pet = $this->petService->createPet($validated['name'], $validated['pet_type']);
         
         return redirect()
             ->route('pet.dashboard')

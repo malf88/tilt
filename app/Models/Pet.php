@@ -12,10 +12,23 @@ class Pet extends Model
 
     protected $fillable = [
         'name',
+        'pet_type',
         'health',
         'hunger',
         'training_level',
         'last_updated_at',
+    ];
+
+    /**
+     * Available pet types with their emoji representations
+     */
+    public const PET_TYPES = [
+        'dog' => '🐕',
+        'cat' => '🐱',
+        'dragon' => '🐉',
+        'fox' => '🦊',
+        'panda' => '🐼',
+        'tiger' => '🐯',
     ];
 
     protected $casts = [
@@ -73,5 +86,29 @@ class Pet extends Model
     public function getIsHungryAttribute(): bool
     {
         return $this->hunger > 70;
+    }
+
+    /**
+     * Get the pet's emoji avatar.
+     */
+    public function getAvatarAttribute(): string
+    {
+        return self::PET_TYPES[$this->pet_type] ?? '🐾';
+    }
+
+    /**
+     * Get the pet's color scheme based on type.
+     */
+    public function getColorSchemeAttribute(): array
+    {
+        return match($this->pet_type) {
+            'dog' => ['primary' => 'amber', 'secondary' => 'orange'],
+            'cat' => ['primary' => 'gray', 'secondary' => 'slate'],
+            'dragon' => ['primary' => 'red', 'secondary' => 'rose'],
+            'fox' => ['primary' => 'orange', 'secondary' => 'amber'],
+            'panda' => ['primary' => 'gray', 'secondary' => 'zinc'],
+            'tiger' => ['primary' => 'yellow', 'secondary' => 'orange'],
+            default => ['primary' => 'blue', 'secondary' => 'indigo'],
+        };
     }
 }

@@ -12,12 +12,14 @@ class PetService implements PetServiceInterface
      * Create a new pet with default values.
      *
      * @param string $name The name of the pet
+     * @param string $petType The type of the pet
      * @return Pet The created pet
      */
-    public function createPet(string $name): Pet
+    public function createPet(string $name, string $petType = 'dog'): Pet
     {
         $pet = Pet::create([
             'name' => $name,
+            'pet_type' => $petType,
             'health' => 100,
             'hunger' => 0,
             'training_level' => 0,

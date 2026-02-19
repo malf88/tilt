@@ -23,6 +23,7 @@ class CreatePetRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:2|max:50|unique:pets,name',
+            'pet_type' => 'required|string|in:dog,cat,dragon,fox,panda,tiger',
         ];
     }
 
@@ -38,6 +39,8 @@ class CreatePetRequest extends FormRequest
             'name.min' => 'O nome do pet deve ter pelo menos 2 caracteres.',
             'name.max' => 'O nome do pet não pode ter mais de 50 caracteres.',
             'name.unique' => 'Já existe um pet com este nome.',
+            'pet_type.required' => 'Escolha um tipo de bichinho.',
+            'pet_type.in' => 'Tipo de bichinho inválido.',
         ];
     }
 }

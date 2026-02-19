@@ -10,8 +10,8 @@
     <div class="bg-white rounded-3xl shadow-lg p-8 mb-6">
         {{-- Pet Header --}}
         <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center space-x-3">
-                <div class="text-5xl">🐾</div>
+            <div class="flex items-center space-x-4">
+                <x-pet-avatar :type="$pet->pet_type" size="lg" />
                 <div>
                     <h2 class="text-2xl font-bold text-gray-800">{{ $pet->name }}</h2>
                     <p class="text-sm text-gray-500">Seu companheiro virtual</p>

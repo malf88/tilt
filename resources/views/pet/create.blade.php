@@ -23,6 +23,23 @@
             @csrf
             
             <div>
+                <label class="block text-sm font-medium text-gray-700 mb-3">
+                    Escolha seu Bichinho
+                </label>
+                <div class="grid grid-cols-3 gap-3">
+                    @foreach(\App\Models\Pet::PET_TYPES as $type => $emoji)
+                        <label class="cursor-pointer">
+                            <input type="radio" name="pet_type" value="{{ $type }}" class="peer hidden" {{ old('pet_type', 'dog') === $type ? 'checked' : '' }} required>
+                            <div class="peer-checked:ring-4 peer-checked:ring-blue-300 peer-checked:scale-105 transition-all rounded-2xl p-4 bg-gray-50 hover:bg-gray-100 flex flex-col items-center">
+                                <x-pet-avatar :type="$type" size="sm" class="mb-2" />
+                                <span class="text-xs font-medium text-gray-700 capitalize">{{ $type }}</span>
+                            </div>
+                        </label>
+                    @endforeach
+                </div>
+            </div>
+
+            <div>
                 <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                     Nome do Pet
                 </label>

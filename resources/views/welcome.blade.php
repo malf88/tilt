@@ -28,7 +28,7 @@
         </div>
 
         {{-- Features --}}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
             <div class="bg-white rounded-3xl shadow-lg p-8 text-center">
                 <div class="text-6xl mb-4">🍖</div>
                 <h3 class="text-lg font-bold text-gray-800 mb-2">Cuide do Seu Pet</h3>
@@ -51,6 +51,19 @@
                 <p class="text-sm text-gray-600">
                     Enfrente oponentes e ganhe recompensas
                 </p>
+            </div>
+        </div>
+
+        {{-- Pet Types Showcase --}}
+        <div class="max-w-4xl mx-auto mb-12">
+            <h3 class="text-2xl font-bold text-gray-800 text-center mb-6">Escolha Seu Companheiro</h3>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+                @foreach(['dog' => 'Cachorro', 'cat' => 'Gato', 'dragon' => 'Dragão', 'fox' => 'Raposa', 'panda' => 'Panda', 'tiger' => 'Tigre'] as $type => $name)
+                    <div class="bg-white rounded-2xl shadow-lg p-4 text-center hover:scale-105 transition-transform">
+                        <x-pet-avatar :type="$type" size="md" class="mx-auto mb-2" />
+                        <p class="text-xs font-medium text-gray-700">{{ $name }}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
 

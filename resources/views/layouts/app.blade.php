@@ -23,7 +23,8 @@
                 
                 @if(isset($pet))
                     <nav class="flex items-center space-x-2">
-                        <div class="hidden md:flex items-center px-4 py-2 bg-purple-100 rounded-full">
+                        <div class="hidden md:flex items-center space-x-2 px-3 py-2 bg-purple-100 rounded-full">
+                            <x-pet-avatar :type="$pet->pet_type" size="sm" class="w-8 h-8" />
                             <span class="text-sm font-medium text-purple-700">{{ $pet->name }}</span>
                         </div>
                         <a href="/pet/dashboard" class="px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:bg-blue-100 transition-colors">

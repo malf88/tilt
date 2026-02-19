@@ -37,7 +37,10 @@
 
         {{-- Pet Stats --}}
         <div class="bg-white rounded-3xl shadow-lg p-6 mb-6">
-            <h3 class="text-lg font-semibold mb-4 text-gray-800">Seu Pet: {{ $pet->name }}</h3>
+            <div class="flex items-center space-x-4 mb-4">
+                <x-pet-avatar :type="$pet->pet_type" size="md" />
+                <h3 class="text-lg font-semibold text-gray-800">Seu Pet: {{ $pet->name }}</h3>
+            </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div class="text-center bg-red-50 rounded-2xl p-4">
                     <div class="text-3xl mb-1">❤️</div>
@@ -84,7 +87,9 @@
             <div class="grid grid-cols-3 gap-4 mb-8">
                 {{-- Your Pet --}}
                 <div class="text-center bg-blue-50 rounded-3xl p-6">
-                    <div class="text-6xl mb-3">🐾</div>
+                    <div class="flex justify-center mb-3">
+                        <x-pet-avatar :type="$pet->pet_type" size="lg" />
+                    </div>
                     <h4 class="font-bold text-lg mb-1 text-gray-800">{{ $pet->name }}</h4>
                     <p class="text-sm text-gray-600">Força: {{ number_format($currentBattle->pet_strength, 1) }}</p>
                 </div>

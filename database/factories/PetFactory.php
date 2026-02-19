@@ -21,6 +21,7 @@ class PetFactory extends Factory
     {
         return [
             'name' => fake()->unique()->firstName() . fake()->numberBetween(1, 9999),
+            'pet_type' => fake()->randomElement(['dog', 'cat', 'dragon', 'fox', 'panda', 'tiger']),
             'health' => 100,
             'hunger' => 0,
             'training_level' => 0,
